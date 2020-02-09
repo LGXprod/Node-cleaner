@@ -8,11 +8,17 @@ def addSpaceBeforeBrace(file):
 
 		if lastChar == "{":
 			currentLine.pop((len(currentLine) - 2))
-			for y in range((len(currentLine)-3), -1, -1):
-				if currentLine[y] == ")" or  currentLine[y] == ">":		
-					currentLine[y+1] = " {\n"
+
+			bracePos = getNewBracePos(currentLine)
+			if (bracePos != -5):
+				currentLine.insert(bracePos, " {")
+
 			# print(currentLine)
-			textFile += "".join(map(str, currentLine))
+			# textFile += "".join(map(str, currentLine))
+
+			for x in currentLine:
+				textFile += x
+			# print(textFile)
 		else:
 			textFile += line
 			# print(currentLine)
@@ -20,6 +26,17 @@ def addSpaceBeforeBrace(file):
 	print(textFile)
 
 	return textFile
+
+def getNewBracePos(currentLine):
+	if len(currentLine) > 3:
+		for y in range((len(currentLine)-1), -1, -1):
+			# closing parathesis completes conditional statement and > starts arrow function
+			# typical convention is to a space after and then the opening brace in JS
+			if currentLine[y] == ")" or  currentLine[y] == ">":	
+				return (y+1)	
+		return -5
+	else:
+		return -5
 
 def addTabSpacing(file):
 	print("")
