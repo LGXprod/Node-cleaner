@@ -4,10 +4,10 @@ import spacing
 fileName = "test.js"
 
 oldFile = open(fileName, "r")
-spacing.addSpaceBeforeBrace(oldFile)
+# spacing.addSpaceBeforeBrace(oldFile)
+spacing.lineSpacing(oldFile)
 
 newFile = open("new"+fileName, "w")
 newFile.write(semicolons.addSemicolons(oldFile))
 
-oldFile.close()
 newFile.close()

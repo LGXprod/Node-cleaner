@@ -23,7 +23,7 @@ def addSpaceBeforeBrace(file):
 			textFile += line
 			# print(currentLine)
 
-	print(textFile)
+	# print(textFile)
 
 	return textFile
 
@@ -42,4 +42,30 @@ def addTabSpacing(file):
 	print("")
 
 def lineSpacing(file):
-	print("")
+	textFile = ""
+
+	lines = file.readlines()
+	print(lines)
+
+	for y in range(0, len(lines)-1):
+		currentLine = lines[y]
+		if len(currentLine) >= 2: # Stops index out of range error and disqualifies \n
+			for char in currentLine:
+				# print(char)
+				if char == "{":
+					if lines[y+1] != "\n":	
+						lines.insert(y+1, "\n")
+						break
+				# elif char == "}":
+				# 	if lines[y-1] != "\n":	
+				# 		lines.insert(y-1, "\n")
+				# 		break
+	
+	for line in lines:
+		textFile += line
+
+	print(textFile)
+		
+	# for y in range(0, len(file)):
+	# 	print(line[len(line)-1])
+	# 	# if line[len(line)-1] == "\n":
